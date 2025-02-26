@@ -7,7 +7,7 @@ const chatSchema = new mongoose.Schema(
     name: { type: String },
     avatar: { type: String },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 const chatModel = mongoose.model("Chat", chatSchema);

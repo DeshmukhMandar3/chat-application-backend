@@ -53,14 +53,14 @@ authRouter.post("/login", async (req, res) => {
     }
     const match = await bcrypt.compare(userDetails?.password, user?.password);
     if (match) {
-      let token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+      let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
         expiresIn: "1d",
       });
-      const { password, ...userWithoutObject } = user;
+
       res.status(200).send({
         token,
         data: {
-          _id: user._id,
+          id: user.id,
           email: user.email,
           username: user.username,
           avatar: user.avatar,

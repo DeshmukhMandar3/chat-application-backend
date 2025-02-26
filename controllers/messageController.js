@@ -5,11 +5,11 @@ const messageRouter = express.Router();
 
 messageRouter.post("/post", async (req, res) => {
   try {
-    const { chatId, senderId, content } = req.body;
-    if (!chatId || !senderId || !content) {
+    const { chatId, userId, content } = req.body;
+    if (!chatId || !userId || !content) {
       return res.status(400).send("Invalid Details");
     }
-    const message = new messageModel({ chatId, senderId, content });
+    const message = new messageModel({ chatId, senderId: userId, content });
     await message.save();
     res.status(200).send("Message Posted Successfully");
   } catch (error) {
